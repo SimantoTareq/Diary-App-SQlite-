@@ -35,7 +35,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
          widget.note !=null? IconButton(
               onPressed: () {
               showDialog(context: context, builder: (context) =>AlertDialog(
-                content: Text("Are you sure, you want to delete this note? "),
+                content: Text("Are you sure, you want to delete this note?"),
                 actions: [
                   TextButton(onPressed: () {
                     Navigator.pop(context);
