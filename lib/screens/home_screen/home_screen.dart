@@ -65,18 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
  //
  //          ),
 
-      // ListView(
-      //   padding: EdgeInsets.all(15),
-      //   children: [
-      //     ItemNote(),
-      //     ItemNote(),
-      //     ItemNote(),
-      //     ItemNote(),
-      //     ItemNote(),
-      //
-      //
-      //   ],
-      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder:(_)=> AddNoteScreen() ));
