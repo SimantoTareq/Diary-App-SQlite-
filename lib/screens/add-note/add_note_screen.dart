@@ -1,8 +1,10 @@
 import 'package:diary_app_sqlite/modles/note.dart';
+import 'package:diary_app_sqlite/providers/notes/notes_provider.dart';
 import 'package:diary_app_sqlite/respository/notes_respository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class AddNoteScreen extends StatefulWidget {
   final Note? note;
@@ -35,7 +37,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
          widget.note !=null? IconButton(
               onPressed: () {
               showDialog(context: context, builder: (context) =>AlertDialog(
-                content: Text("Are you sure, you want to delete this note?"),
+                content: Text("Are you sure, you want to delete this note? "),
                 actions: [
                   TextButton(onPressed: () {
                     Navigator.pop(context);
@@ -97,7 +99,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         description: _description.text,
         createdAt: DateTime.now()
     );
-   await NotesRespository.insert(note: note);
+    Provider.of<NotesProvider>(context,listen: false).insert(note: note);
+
+   //await NotesRespository.insert(note: note);
   }
 
   _updatetNote() async{
@@ -107,12 +111,19 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         description: _description.text,
         createdAt: widget.note!.createdAt
     );
-    await NotesRespository.update(note: note);
+    Provider.of<NotesProvider>(context,listen: false).update(note: note);
+    //await NotesRespository.update(note: note);
   }
 
   _deleteNote() async{
-    NotesRespository.delete(note: widget.note!).then((e){
+    Provider.of<NotesProvider>(context,listen: false).delete(note: widget.note!).then((isdone){
+
       Navigator.pop(context);
     });
+
+
+    // NotesRespository.delete(note: widget.note!).then((e){
+    //   Navigator.pop(context);
+    // });
   }
 }
